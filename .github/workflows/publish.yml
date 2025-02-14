@@ -35,7 +35,7 @@ jobs:
         run: npx next build
 
       - name: Check if 'out' directory exists
-        run: ls -l
+        run: ls -a
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
