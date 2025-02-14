@@ -48,11 +48,11 @@ export default function Home() {
           key={(index * 2) + 1}    
           >
           <Card 
-          onClick={() => {handleClickOpen(`/${`portfolio/Page${(index * 2) + 1}.jpg`}`)}}
+          onClick={() => {handleClickOpen(`/bobby-portfolio/${`portfolio/Page${(index * 2) + 1}.jpg`}`)}}
           >
             <CardContent>
               <img
-              src={`/${`portfolio/Page${(index * 2) + 1}.jpg`}`}
+              src={`/bobby-portfolio/${`portfolio/Page${(index * 2) + 1}.jpg`}`}
               alt={`Page${index+1}`}
               style={{
                 height: 600,
@@ -63,11 +63,11 @@ export default function Home() {
           </Card>
           <Card 
           key={(index * 2) + 2}
-          onClick={() => {handleClickOpen(`/${`portfolio/Page${(index * 2) + 2}.jpg`}`)}}
+          onClick={() => {handleClickOpen(`/bobby-portfolio/${`portfolio/Page${(index * 2) + 2}.jpg`}`)}}
           >
             <CardContent>
               <img
-              src={`/${`portfolio/Page${(index * 2) + 2}.jpg`}`}
+              src={`/bobby-portfolio/${`portfolio/Page${(index * 2) + 2}.jpg`}`}
               alt={`Page${index+1}`}
               style={{
                 height: 600,
@@ -101,13 +101,13 @@ export default function Home() {
       </main>
       <footer className={styles.footer}>
         <a
-          href="/portfolio.pdf"
+          href="/bobby-portfolio/portfolio.pdf"
           target="_blank"
           rel="noopener noreferrer"
         >
           <Image
             aria-hidden
-            src="/pdf.png"
+            src="/bobby-portfolio/pdf.png"
             alt="File icon"
             width={16}
             height={16}
@@ -121,7 +121,7 @@ export default function Home() {
         >
         <Image
           aria-hidden
-          src="/public/linkedin.svg"
+          src="/bobby-portfolio/linkedin.svg"
           alt="File icon"
           width={16}
           height={16}
