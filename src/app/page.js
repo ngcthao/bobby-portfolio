@@ -6,24 +6,23 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Stack, Card, CardContent } from '@mui/material';
+import Dialog from '@mui/material/Dialog';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import ImagePopup from './components/imgpopup.js';
 
 export default function Home() {
-  // const [isOpen, setIsOpen] = useState(false);
-  // const [selectedImage, setSelectedImage] = useState('');
+  const [open, setOpen] = React.useState(false);
+  const [imgSource, setImgSource] = React.useState();
 
-  // const openImg = (imgSrc) => {
-  //   console.log("asdfghj")
-  //   if(!isOpen) {
-  //   console.log("opening")
-  //   setSelectedImage(imgSrc);
-  //   setIsOpen(true);
-  //   }
-  // };
-  // const closeImg = () => {
-  //   setIsOpen(false);
-  // };
+  const handleClickOpen = (value) => {
+    setImgSource(value);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setImgSource();
+  };
+
 
   return (
     <div className={styles.page}>
@@ -32,39 +31,73 @@ export default function Home() {
       autoFocus
       showThumbs={false}
       autoPlay={false}
-      infiniteLoop={false}
+      infiniteLoop={true}
       swipeable
       showArrows={true}
       useKeyboardArrows={true}
+      showStatus={false}
       >
         {Array.from({ length: 25 }, (_, index) => (
-            <Card key={index}>
-              <CardContent>
-                <Stack direction="row" spacing={1}>
-                <img
-                    src={`/${`portfolio/Page${(index * 2) + 1}.jpg`}`}
-                    alt={`Page${index+1}`}
-                    style={{
-                      height: 600,
-                      objectFit: 'contain',
-                    }}
-                    // onClick={openImg("/pdf.png")}
-                  />
-                  <img
-                    src={`/${`portfolio/Page${(index * 2) + 2}.jpg`}`}
-                    alt={`Page${index+1}`}
-                    style={{
-                      height: 600,
-                      objectFit: 'contain',
-                    }}
-                    // onClick={openImg("/pdf.png")}
-                  />
-                  </Stack>
-              </CardContent>
-            </Card>
+          <Stack
+          direction="row"
+          spacing={1}
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          key={(index * 2) + 1}    
+          >
+          <Card 
+          onClick={() => {handleClickOpen(`/${`portfolio/Page${(index * 2) + 1}.jpg`}`)}}
+          >
+            <CardContent>
+              <img
+              src={`/${`portfolio/Page${(index * 2) + 1}.jpg`}`}
+              alt={`Page${index+1}`}
+              style={{
+                height: 600,
+                objectFit: 'contain',
+              }}
+              />
+            </CardContent>
+          </Card>
+          <Card 
+          key={(index * 2) + 2}
+          onClick={() => {handleClickOpen(`/${`portfolio/Page${(index * 2) + 2}.jpg`}`)}}
+          >
+            <CardContent>
+              <img
+              src={`/${`portfolio/Page${(index * 2) + 2}.jpg`}`}
+              alt={`Page${index+1}`}
+              style={{
+                height: 600,
+                objectFit: 'contain',
+              }}
+              />
+            </CardContent>
+          </Card>
+          </Stack>
         ))}
       </Carousel>
-      {/* <ImagePopup isOpen={isOpen} onRequestClose={closeImg} imageSrc={selectedImage} /> */}
+      <Dialog
+      onClose={handleClose}
+      open={open}
+      // References: https://stackoverflow.com/questions/47181399/dialog-width-material-ui
+      sx={{
+        "& .MuiDialog-container": {
+          "& .MuiPaper-root": {
+            width: "100%",
+            maxWidth: "1000px",
+          },
+        },
+      }}
+  
+      >
+        <img
+          src={imgSource}
+          alt="no image"
+        />
+      </Dialog>
       </main>
       <footer className={styles.footer}>
         <a
