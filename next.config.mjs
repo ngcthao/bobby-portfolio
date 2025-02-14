@@ -2,6 +2,7 @@
 const nextConfig = {
     basePath: "/bobby-portfolio",
     output: "export",  // <=== enables static exports
+    distDir: 'out',
     reactStrictMode: true,
   };
 
